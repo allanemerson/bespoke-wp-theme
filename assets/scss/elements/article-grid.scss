@@ -1,0 +1,11 @@
+@use "../utils";
+.article-grid {
+	display: grid;
+	gap: calc(var(--gap) * 2) var(--gap);
+	@media (min-width: #{utils.getBreakpoint('md')}) {
+		grid-template-columns: repeat(2, 1fr);
+	}
+	@media (min-width: #{utils.getBreakpoint('lg')}) {
+		grid-template-columns: repeat(3, 1fr);
+	}
+}

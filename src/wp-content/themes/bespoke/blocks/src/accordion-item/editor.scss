@@ -1,0 +1,21 @@
+/**
+ * The following styles get applied inside the editor only.
+ *
+ * Replace them with your own styles or remove the file completely.
+ */
+.wp-block-bespoke-accordion-item {
+	margin: 25px;
+	border: dotted 1px pink;
+
+	.accordion-toggle {
+		padding: 0;
+		border: dotted 1px pink;
+	}
+	.accordion-toggle,
+	.accordion-body {
+		margin: 10px;
+		border: dotted 1px lightpink;
+		width: auto;
+		display: block;
+	}
+}

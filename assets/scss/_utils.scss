@@ -1,0 +1,213 @@
+@use "sass:map";
+@use "sass:math";
+
+$grid-breakpoints: (
+	xs: 0,
+	ms: 375px,
+	sm: 576px,
+	md: 768px,
+	lg: 992px,
+	xl: 1200px,
+	xxl: 1500px,
+);
+
+@function rem($pxValue) {
+	@return #{math.div($pxValue, 16)}rem;
+}
+
+@function makeClamp($min, $max) {
+	@return clamp(#{rem($min)}, #{math.div($max, 1600) * 100}vw, #{rem($max)});
+}
+
+@function getBreakpoint($key, $asMaxValue: false) {
+	@if $asMaxValue {
+		@return map-get($grid-breakpoints, $key) - 1;
+	}
+	@return map-get($grid-breakpoints, $key);
+}
+
+@mixin resetList {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+@mixin resetButton {
+	appearance: none;
+	background: transparent;
+	border-radius: 0;
+	border: 0;
+	padding: 0;
+	cursor: pointer;
+	display: inline-block;
+	font-family: inherit;
+}
+
+@mixin resetField {
+	background: transparent;
+	border: 0;
+	border-radius: 0;
+	padding: 0;
+	margin: 0;
+	appearance: none;
+}
+
+@mixin btnBase {
+	color: var(--color-button-text);
+	display: inline-block;
+	font-size: var(--font-size-buttons);
+	font-weight: 500;
+	line-height: 1;
+	padding: 1em 1.39em;
+	transition: all var(--transitions);
+	user-select: none;
+	white-space: nowrap;
+	text-align: center;
+	text-decoration: none;
+	@media (hover: hover) {
+		&:hover {
+			text-decoration: none;
+			color: var(--color-hover-button-text);
+			background-color: var(--color-hover-button-bg);
+		}
+	}
+	&:not(:disabled) {
+		cursor: pointer;
+	}
+	&:disabled {
+		opacity: 0.5;
+	}
+}
+
+@mixin btnSecondary {
+	border: none;
+	border-top: solid 3px var(--color-button);
+	padding: 6px 0 0;
+	@media (hover: hover) {
+		&:hover {
+			color: var(--color-button-hover, var(--color-black)); 
+			border-top-color: var(--color-button-hover, var(--color-black)); 
+			background: none;
+		}
+	}
+}
+
+@mixin fieldBase {
+	padding: var(--field-padding);
+	background: var(--field-color, var(--color-white));
+	color: var(--field-text-color, var(--color-text));
+	min-height: 60px;
+	width: 100%;
+	font-size: rem(16);
+	font-family: var(--font-family-base);
+
+	&:focus{
+		box-shadow: 0 0 6px rgba(0,80,158,.5);
+	}
+}
+
+@mixin choiceLabel {
+	display: flex;
+	align-items: center;
+	gap: 5px;
+	margin: 0;
+	font-size: var(--small-text);
+	font-family: var(--font-family-base);
+	position: relative;
+	&::before {
+		content: "";
+		width: 30px;
+		aspect-ratio: 1;
+		background: var(--field-color, var(--color-white));
+	}
+}
+
+@mixin choiceInput {
+	position: absolute;
+	width: 30px;
+	aspect-ratio: 1;
+	opacity: 0;
+	left: 0;
+}
+
+@mixin checkboxLabelBase {
+	&::before {
+		background-repeat: no-repeat;
+		background-size: 50% auto;
+		background-position: center center;
+	}
+}
+@mixin checkboxLabelChecked {
+	&::before {
+		background-image: url("../assets/images/checkbox-check.svg");
+	}
+}
+
+@mixin radioLabelBase {
+	&::before {
+		border-radius: 50%;
+	}
+	&::after {
+		content: "";
+		position: absolute;
+		width: 10px;
+		aspect-ratio: 1;
+
+		border-radius: 50%;
+		top: 15px;
+		left: 15px;
+		transform: translate(-50%, -50%);
+	}
+}
+@mixin radioLabelChecked {
+	&::after {
+		background: var(--color-black);
+	}
+}
+
+@mixin accent($size: "normal", $location: "above") {
+	@if $location == "below" {
+		&::after {
+			content: "";
+			display: block;
+			background: var(--color-accent);
+			height: 3px;
+			margin-top: 0.75em;
+			@if $size == "full" {
+				width: 100%;
+			} @else {
+				width: clamp(#{rem(80)}, 4.5vw, #{rem(90)});
+			}
+		}
+	} @else {
+		&::before {
+			content: "";
+			display: block;
+			background: var(--color-accent);
+			height: 3px;
+			margin-bottom: clamp(#{rem(6)}, 1vw, #{rem(8)});
+			@if $size == "full" {
+				width: 100%;
+			} @else {
+				width: clamp(#{rem(80)}, 4.5vw, #{rem(90)});
+			}
+		}
+	}
+}
+
+// https://www.a11yproject.com/posts/how-to-hide-content/
+@mixin visually-hidden {
+	clip: rect(0 0 0 0);
+	clip-path: inset(50%);
+	height: 1px;
+	overflow: hidden;
+	position: absolute;
+	white-space: nowrap;
+	width: 1px;
+}
+
+@mixin focusStyle {
+	outline-color: var(--color-black);
+	outline-style: solid;
+	outline-width: 2px;
+}

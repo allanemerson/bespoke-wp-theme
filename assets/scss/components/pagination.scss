@@ -1,0 +1,34 @@
+@use "../utils";
+.paging {
+	align-items: center;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+}
+.nav-links {
+	display: flex;
+	gap: 6px;
+	justify-content: center;
+}
+.page-numbers {
+	align-items: center;
+	display: flex;
+	height: #{utils.makeClamp(35, 40)};
+	aspect-ratio: 1;
+	justify-content: center;
+	position: relative;
+	text-decoration: none;
+	// &.current {
+		
+	// }
+	&.prev,
+	&.next {
+		border: solid 2px;
+
+		&.is-disabled {
+			border-color: var(--color-gray);
+			color: var(--color-gray);
+			pointer-events: none;
+		}
+	}
+}

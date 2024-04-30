@@ -1,0 +1,30 @@
+{
+	"name": "electricpulp",
+	"version": "1.0.0",
+	"main": "webpack.mix.js",
+	"scripts": {
+		"watch": "npx mix watch",
+		"production": "npx mix --production",
+		"prod": "npx mix --production"
+	},
+	"author": "electricpulp.com",
+	"license": "MIT",
+	"private": true,
+	"devDependencies": {
+		"browser-sync": "^2.27.5",
+		"browser-sync-webpack-plugin": "^2.3.0",
+		"dotenv": "^14.3.2",
+		"laravel-mix": "^6.0.39",
+		"laravel-mix-purgecss": "^6.0.0",
+		"purgecss-with-wordpress": "^4.1.0",
+		"sass": "^1.37.5",
+		"sass-loader": "^12.1.0"
+	},
+	"dependencies": {
+		"@popperjs/core": "^2.9.2",
+		"a11y-dialog": "^8.0.4",
+		"chart.js": "^4.4.2",
+		"chartjs-plugin-deferred": "^2.0.0",
+		"swiper": "^11.0.5"
+	}
+}

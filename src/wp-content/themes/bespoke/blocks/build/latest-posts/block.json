@@ -1,0 +1,32 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "bespoke/latest-posts",
+  "version": "0.1.0",
+  "title": "Latest Posts",
+  "category": "theme",
+  "example": {},
+  "attributes": {
+    "anchor": {
+      "type": "string"
+    },
+    "heading": {
+      "type": "string",
+      "default": "Latest Posts"
+    }
+  },
+  "supports": {
+    "html": false,
+    "spacing": {
+      "padding": [
+        "top",
+        "bottom"
+      ]
+    }
+  },
+  "textdomain": "bespoke",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css",
+  "render": "file:./render.php"
+}

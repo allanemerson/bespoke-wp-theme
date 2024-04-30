@@ -1,0 +1,135 @@
+@use "../utils";
+* {
+	box-sizing: border-box;
+}
+
+*:focus-visible {
+	@include utils.focusStyle;
+}
+
+html {
+	scroll-behavior: smooth;
+}
+
+body {
+	-moz-osx-font-smoothing: grayscale;
+	-webkit-font-smoothing: antialiased;
+	font-family: var(--font-family-base);
+	font-size: var(--font-size-base);
+	line-height: var(--line-height-base);
+	color: var(--color-text);
+
+	&.no-scroll {
+		overflow: hidden;
+	}
+}
+
+[href="#site-main"] {
+	position: absolute;
+	z-index: 1000;
+}
+
+.screen-reader-text,
+.visually-hidden,
+.visually-hidden-focusable:not(:focus):not(:focus-within) {
+	@include utils.visually-hidden;
+}
+
+a {
+	color: var(--color-anchors);
+	&:hover {
+		text-decoration: none;
+	}
+}
+
+// this isn't included in buttons.scss to protect admin buttons
+button,
+[type="submit"] {
+	@include utils.resetButton;
+}
+
+figure {
+	margin-inline: 0;
+}
+video,
+svg,
+img {
+	display: block;
+	max-width: 100%;
+	height: auto;
+}
+picture {
+	display: block;
+}
+b,
+strong {
+	font-weight: 400;
+	font-family: var(--font-family-semi-bold);
+}
+
+p,
+ol,
+ul,
+dl,
+table,
+figure,
+blockquote {
+	margin-block: 0.4em 1.25em;
+}
+
+hr{
+	border: 0;
+	border-top: solid 1px var(--color-borders);
+}
+
+.page-content {
+	// constrain width of all elements
+	> * {
+		max-width: var(--content-max-width);
+		margin-inline: auto;
+	}
+	// full width for custom blocks and groups
+	> .wp-block-group,
+	[class*="wp-block-bespoke"] {
+		max-width: 100%;
+	}
+	// when we tell something to be container width
+	.is-style-wide {
+		max-width: var(--wide-max-width);
+		margin-inline: auto;
+	}
+}
+
+.wp-block-group {
+	padding-block: var(--spacing-7);
+
+	> .wp-block-heading {
+		max-width: var(--wide-max-width);
+	}
+
+	> .wp-block-pullquote{
+		@media (max-width: #{utils.getBreakpoint('lg', true)}){
+			padding-inline: 2em;
+		}
+	}
+
+	// groups apply dumb margin rules automatically
+	[class*="wp-block-bespoke"],
+	[class*="wp-block-bespoke"]:first-child,
+	[class*="wp-block-bespoke"]:last-child{
+		margin: 0;
+	}
+}
+
+.not-found {
+	margin-block: var(--spacing-6);
+	padding: #{utils.makeClamp(40, 100)};
+	background: var(--color-blue-5);
+	text-align: center;
+	font-family: var(--font-family-headings);
+	color: var(--color-black);
+	font-size: var(--font-size-h5);
+	p {
+		margin: 0;
+	}
+}

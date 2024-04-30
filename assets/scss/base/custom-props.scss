@@ -1,0 +1,43 @@
+@use "../utils";
+:root {
+	--color-black: #000;
+	--color-gray: #888;
+	--color-white: #fff;
+	--color-body: #fff;
+	--color-text: var(--color-black);
+	--color-button-text: var(--color-white);
+	--color-button-text-hover: var(--color-white);
+	--color-button-bg: var(--color-black);
+	--color-button-bg-hover: var(--color-gray);
+	--color-borders: var(--color-gray);
+	--vw-max-width: 89.74vw;
+	--content-max-width: min(var(--vw-max-width), 690px);
+	--wide-max-width: min(var(--vw-max-width), 1410px);
+	--field-bg: #fff;
+	--field-padding: 1.1875em;
+	--field-spacing: 1em;
+	--font-family-base:  sans-serif;
+	--font-family-headings: sans-serif;
+	--font-size-base: #{utils.makeClamp(16, 18)};
+	--line-height-base: 1.6;
+	--gap: #{utils.makeClamp(20, 30)};
+	--transitions: 0.3s;
+
+	--font-size-h1: #{utils.makeClamp(25, 55)};
+	--font-size-h2: #{utils.makeClamp(23, 40)};
+	--font-size-h3: #{utils.makeClamp(22, 32)};
+	--font-size-h4: #{utils.makeClamp(20, 28)};
+	--font-size-h5: #{utils.makeClamp(18, 22)};
+	--font-size-h6: #{utils.makeClamp(16, 18)};
+
+	--spacing-1: #{utils.makeClamp(8, 10)};
+	--spacing-2: #{utils.makeClamp(15, 20)};
+	--spacing-3: #{utils.makeClamp(20, 30)};
+	--spacing-4: #{utils.makeClamp(40, 50)};
+	--spacing-5: #{utils.makeClamp(50, 75)};
+	--spacing-6: #{utils.makeClamp(50, 100)};
+}
+
+body{
+	--wp--style--global--content-size: min(var(--vw-max-width), 690px);
+}

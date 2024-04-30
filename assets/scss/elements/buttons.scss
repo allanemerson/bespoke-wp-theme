@@ -1,0 +1,21 @@
+@use "../utils";
+
+.btn,
+.wp-element-button {
+	@include utils.resetButton;
+	@include utils.btnBase;
+}
+
+.wp-block-button.is-style-secondary .wp-element-button,
+.is-style-secondary {
+	@include utils.btnSecondary;
+}
+
+.wp-block-buttons {
+	gap: clamp(15px, 1vw, 20px);
+	@media (max-width: #{utils.getBreakpoint('sm', true)}) {
+		.wp-element-button {
+			width: 100%;
+		}
+	}
+}

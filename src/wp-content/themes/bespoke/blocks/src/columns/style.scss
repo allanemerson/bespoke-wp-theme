@@ -1,0 +1,28 @@
+@use "../../../../../../../assets/scss/utils";
+.wp-block-bespoke-columns {
+	container-type: inline-size;
+	&.is-style-align-center {
+		.wp-block-bespoke-column {
+			display: grid;
+			place-content: center;
+		}
+	}
+	&.is-style-align-bottom {
+		.grid{
+			align-items: end;
+		}
+	}
+	.grid {
+		display: grid;
+		gap: var(--gap);
+		@container (min-width: #{utils.getBreakpoint('md')}) {
+			grid-template-columns: repeat(2, 1fr);
+		}
+		@container (min-width: #{utils.getBreakpoint('lg')}) {
+			grid-template-columns: repeat(var(--column-count), 1fr);
+		}
+		&.no-change{
+			grid-template-columns: repeat(var(--column-count), 1fr);
+		}
+	}
+}

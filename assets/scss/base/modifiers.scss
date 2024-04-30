@@ -1,0 +1,46 @@
+@use "../utils";
+figure.aligncenter {
+	display: flex;
+	justify-content: center;
+}
+figure.alignright {
+	display: flex;
+	justify-content: flex-end;
+}
+
+.has-text-align-left {
+	text-align: left;
+}
+.has-text-align-center {
+	text-align: center;
+	&::before,
+	&::after {
+		margin-inline: auto;
+	}
+}
+.has-text-align-right {
+	text-align: center;
+}
+
+.is-content-justification-left {
+	justify-content: flex-start;
+}
+.is-content-justification-center {
+	justify-content: center;
+}
+.is-content-justification-right {
+	justify-content: flex-end;
+}
+.is-content-justification-space-between {
+	justify-content: space-between;
+}
+
+.align-self-end {
+	align-self: flex-end;
+}
+
+.hidden-xs{
+	@media (max-width: #{utils.getBreakpoint('sm', true)}){
+		display: none;
+	}
+}

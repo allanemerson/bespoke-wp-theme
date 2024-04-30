@@ -1,0 +1,50 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "bespoke/columns",
+  "version": "0.1.0",
+  "title": "Columns",
+  "category": "theme",
+  "example": {},
+  "attributes": {
+    "anchor": {
+      "type": "string"
+    },
+    "mobile_layout": {
+      "type": "string",
+      "default": "stacked"
+    }
+  },
+  "styles": [
+    {
+      "name": "default",
+      "label": "Align Top",
+      "isDefault": true
+    },
+    {
+      "name": "align-center",
+      "label": "Align Center"
+    },
+    {
+      "name": "align-bottom",
+      "label": "Align Bottom"
+    }
+  ],
+  "supports": {
+    "html": false,
+    "spacing": {
+      "padding": [
+        "top",
+        "bottom"
+      ]
+    },
+    "color": {
+      "background": true
+    }
+  },
+  "textdomain": "bespoke",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css",
+  "render": "file:./render.php"
+}

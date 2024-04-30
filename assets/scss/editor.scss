@@ -1,0 +1,140 @@
+@use "sass:meta";
+@use "base/custom-props";
+:root {
+	--admin-inline-padding: 20px;
+}
+html :where(.editor-styles-wrapper) {
+	font-family: var(--font-family-base);
+	font-size: var(--font-size-base);
+	line-height: var(--line-height-base);
+}
+
+.wp-block-post-title {
+	line-height: 1.1;
+}
+
+.editor-styles-wrapper .is-root-container {
+	padding-inline: 15px;
+	@include meta.load-css("elements");
+	@include meta.load-css("base/modifiers");
+
+	.media-item {
+		position: relative;
+	}
+
+	// all custom blocks will be 100% of the editor width so background colors fill
+	// containers within each block will handle the content width
+	> .block-library-block__reusable-block-container,
+	> [class*="wp-block-bespoke"] {
+		max-width: 100% !important;
+		* {
+			box-sizing: border-box;
+		}
+	}
+
+	// allow group to go full width to support background image
+	.wp-block-group {
+		padding-block: var(--spacing-7);
+		padding-inline: 15px;
+		max-width: 100% !important;
+
+		// but then constrain its contents to regular width
+		> * {
+			max-width: var(--wide-max-width);
+			margin-inline: auto;
+		}
+	}
+
+	// nothign on the site is truly 100%
+	> .alignfull {
+		max-width: var(--full-max-width) !important;
+		margin-inline: auto;
+	}
+
+	a {
+		color: currentColor;
+		pointer-events: none;
+	}
+
+	img {
+		max-width: 100%;
+	}
+
+	.button-remove {
+		z-index: 2;
+		position: absolute;
+		top: 20px;
+		left: 20px;
+	}
+	.validation-error {
+		padding: 0 12px;
+		border-left: solid 2px red;
+		background: hsl(0, 100%, 95%);
+		color: red;
+		margin: 0 12px 12px 0;
+		display: flex;
+		align-items: center;
+	}
+	.block-editor-url-input__button {
+		position: relative;
+	}
+	.block-editor-url-input__button-modal {
+		position: absolute;
+		z-index: 2;
+	}
+
+	// [class*="wp-block-bespoke"] .block-list-appender.wp-block {
+	// 	display: none;
+	// }
+	// [class*="wp-block-bespoke"].is-selected {
+	// 	.block-list-appender.wp-block {
+	// 		display: block;
+	// 	}
+	// }
+	.has-blue-2-background-color,
+	.has-blue-background-color,
+	.has-red-background-color {
+		.block-editor-button-block-appender {
+			color: white;
+			box-shadow: inset 0 0 0 1px white;
+		}
+	}
+
+	.admin-field{
+		display: flex;
+		align-items: baseline;
+		gap: 1ch;
+		.label{
+			opacity: .5;
+			font-size: .8em;
+		}
+	}
+
+	.block-editor-media-placeholder{
+		.components-placeholder__fieldset {
+			gap: 12px;
+			.components-button{
+				margin: 0;
+			}
+		}
+		.instructions{
+			padding: 6px;
+			background: #FFF8E1;
+			display: inline-flex;
+			align-items: center;
+		}
+		.error{
+			padding: 6px;
+			background: #FFE1E1;
+			display: inline-flex;
+			align-items: center;
+		}
+	}
+}
+
+.admin-message {
+	padding: var(--spacing-6);
+	background: #eee;
+	text-align: center;
+	color: #000;
+}

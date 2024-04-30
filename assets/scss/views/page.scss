@@ -1,0 +1,18 @@
+.error404 {
+	.page-content {
+		padding-bottom: var(--block-padding);
+	}
+}
+.page-template-page-legal {
+	main .container {
+		max-width: 60ch;
+	}
+	.page-content {
+		max-width: var(--content-max-width);
+		padding-bottom: var(--block-padding);
+		margin-inline: auto;
+		> *:not([class*="wp-block-bespoke"]):not(.alignwide):not(.alignfull) {
+			max-width: 100%;
+		}
+	}
+}
