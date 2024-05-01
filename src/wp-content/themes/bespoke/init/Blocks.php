@@ -26,24 +26,24 @@ class Blocks
 	function allowed_block_types($allowed_block_types, $block_editor_context)
 	{
 		$allowedBlocks = [
-			'core/pullquote',
-			'core/list',
-			'core/list-item',
-			'core/heading',
+			'core/address',
+			'core/block', // necessary for patterns
 			'core/button',
 			'core/buttons',
-			'core/image',
-			'core/table',
-			'core/more',
-			'core/video',
-			'core/html',
-			'core/shortcode',
 			'core/group',
+			'core/heading',
+			'core/html',
+			'core/image',
+			'core/list-item',
+			'core/list',
+			'core/more',
+			'core/paragraph',
+			'core/pullquote',
 			'core/separator',
-			'core/address',
+			'core/shortcode',
+			'core/table',
+			'core/video',
 			'gravityforms/form',
-			'core/paragraph', // leave this so you can copy & past blocks into new lines
-			'core/block', // DO NOT REMOVE THIS, OR REUSABLE BLOCKS WILL BE MISSING FROM YOUR OPTIONS
 		];
 		return array_merge($this->custom_blocks, $allowedBlocks);
 	}
