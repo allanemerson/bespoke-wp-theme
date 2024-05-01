@@ -36,11 +36,11 @@ export default function Edit({ attributes, setAttributes }) {
 	return (
 		<div {...useBlockProps()}>
 			<Image
-				image={attributes.main_image}
-				label="Main Image"
+				image={attributes.image}
+				label="Image"
 				onUpdate={(image) => {
 					setAttributes({
-						main_image: {
+						image: {
 							url: image.url,
 							id: image.id,
 						},
