@@ -5,8 +5,8 @@ namespace Bespoke;
 class Search
 {
 
-	private $db;
-	private $query;
+	protected $db;
+	protected $query;
 
 	function __construct()
 	{

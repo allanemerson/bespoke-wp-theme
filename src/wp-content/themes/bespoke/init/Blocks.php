@@ -4,7 +4,7 @@ namespace Bespoke;
 
 class Blocks
 {
-	private $custom_blocks;
+	protected $custom_blocks;
 
 	function __construct()
 	{
