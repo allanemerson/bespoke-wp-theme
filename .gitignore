@@ -16,20 +16,6 @@ node_modules/*
 bower_components
 bower_components/*
 
-##### WordPress #####
-wp-config.php
-src/.maintenance
-src/wp-content/debug.log
-src/wp-content/ewww/
-src/wp-content/upgrade/
-src/wp-content/uploads/*
-!src/wp-content/uploads/empty
-
-#Wordfence
-src/wp-content/wflogs
-
-# W3TC plugin contents
-src/wp-content/cache/*
-src/wp-content/w3tc-config/*
-
-uploads.zip
+##### Ignore everything except for our theme #####
+src
+!src/wp-content/themes/bespoke
