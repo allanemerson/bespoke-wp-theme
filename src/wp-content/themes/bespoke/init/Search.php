@@ -24,7 +24,7 @@ class Search
 	 */
 	function posts_join($join)
 	{
-		if (isset($_POST['search'])) {
+		if (!empty($this->query->query_vars['s'])) {
 			$join .= ' LEFT JOIN ' . $this->db->postmeta . ' ON ' . $this->db->posts . '.ID = ' . $this->db->postmeta . '.post_id ';
 		}
 		return $join;
@@ -35,7 +35,7 @@ class Search
 	 */
 	function posts_where($where)
 	{
-		if (isset($_POST['search'])) {
+		if (!empty($this->query->query_vars['s'])) {
 			$where = preg_replace(
 				"/\(\s*" . $this->db->posts . ".post_title\s+LIKE\s*(\'[^\']+\')\s*\)/",
 				"(" . $this->db->posts . ".post_title LIKE $1) OR (" . $this->db->postmeta . ".meta_value LIKE $1)",
@@ -51,7 +51,7 @@ class Search
 	 */
 	function posts_distinct($where)
 	{
-		if (isset($_POST['search'])) {
+		if (!empty($this->query->query_vars['s'])) {
 			return "DISTINCT";
 		}
 		return $where;
