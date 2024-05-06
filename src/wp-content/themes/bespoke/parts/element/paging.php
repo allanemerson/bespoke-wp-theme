@@ -8,15 +8,15 @@ $perPageSetting = get_option('posts_per_page');
 $perPageOptions = [$perPageSetting, $perPageSetting * 1.5, $perPageSetting * 2];
 ?>
 <div class="paging">
-	<span class="paging-num"><?= $min ?>-<?= $max ?> of <?= $total ?></span>
+	<span class="paging-num"><?php echo $min ?>-<?php echo $max ?> of <?php echo $total ?></span>
 	<div class="dropdown">
 		<button aria-expanded="false">
-			Show <?= $perPage ?>
+			Show <?php echo $perPage ?>
 		</button>
 		<ul>
 			<?php foreach ($perPageOptions as $opt) : ?>
 				<li>
-					<a class="<?= $opt == $perPage ? 'active' : '' ?>" href="<?= get_post_type_archive_link(get_post_type()) ?>?per_page=<?= $opt ?>">Show <?= $opt ?></a>
+					<a class="<?php echo $opt == $perPage ? 'active' : '' ?>" href="<?php echo get_post_type_archive_link(get_post_type()) ?>?per_page=<?php echo $opt ?>">Show <?php echo $opt ?></a>
 				</li>
 			<?php endforeach; ?>
 		</ul>

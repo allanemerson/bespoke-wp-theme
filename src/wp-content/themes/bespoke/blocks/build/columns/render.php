@@ -6,10 +6,10 @@
 $columns = count($block->parsed_block['innerBlocks']);
 $columns = $columns < 6 ? $columns : 5;
 ?>
-<div <?= get_block_wrapper_attributes(Bespoke\Template::get_block_atts($block)) ?>>
-	<div class="container-large" style="--column-count: <?= $columns ?>">
-		<div class="grid <?= Bespoke\Template::get_attribute($attributes, 'mobile_layout'); ?>">
-			<?= $content ?>
+<div <?php echo get_block_wrapper_attributes(Bespoke\Template::get_block_atts($block)) ?>>
+	<div class="container-large" style="--column-count: <?php echo $columns ?>">
+		<div class="grid <?php echo Bespoke\Template::get_attribute($attributes, 'mobile_layout'); ?>">
+			<?php echo $content ?>
 		</div>
 	</div>
 </div>

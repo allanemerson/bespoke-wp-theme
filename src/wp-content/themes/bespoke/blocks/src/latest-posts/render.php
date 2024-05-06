@@ -13,10 +13,10 @@ if ($posts->have_posts()) :
 			<div class="slider-articles">
 				<header class="block-header is-style-minimal">
 					<?php if ($t = Bespoke\Template::get_attribute($attributes, 'heading')) : ?>
-						<h2 class="is-style-accent"><?= $t ?></h2>
+						<h2 class="is-style-accent"><?php echo $t ?></h2>
 					<?php endif; ?>
 					<div class="slider-controls">
-						<a href="<?= get_post_type_archive_link('post') ?>" class="block-header-link">
+						<a href="<?php echo get_post_type_archive_link('post') ?>" class="block-header-link">
 							More Like This
 						</a>
 						<?php if ($posts->found_posts > 3) : ?>

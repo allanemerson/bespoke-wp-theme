@@ -4,7 +4,7 @@
  * @see https://github.com/WordPress/gutenberg/blob/trunk/docs/reference-guides/block-api/block-metadata.md#render
  */
 ?>
-<div <?= get_block_wrapper_attributes(Bespoke\Template::get_block_atts($block)) ?>>
+<div <?php echo get_block_wrapper_attributes(Bespoke\Template::get_block_atts($block)) ?>>
 	<div class="container-large">
 		<?php if ($attributes['contentType'] != 'custom') :
 			$t = Bespoke\Template::get_attribute($attributes, 'category');
@@ -43,23 +43,23 @@
 				?>
 					<div class="wp-block-bespoke-accordion-item">
 						<h3 class="accordion-header">
-							<button id="accordion-<?= $accordionId ?>-title" type="button" class="accordion-toggle" aria-expanded="false" aria-controls="accordion-<?= $accordionId ?>-body">
+							<button id="accordion-<?php echo $accordionId ?>-title" type="button" class="accordion-toggle" aria-expanded="false" aria-controls="accordion-<?php echo $accordionId ?>-body">
 								<?php the_title() ?>
 								<?php if (!empty($meta)) : ?>
-									<span class="title-sub"><?= implode(' — ', $meta) ?></span>
+									<span class="title-sub"><?php echo implode(' — ', $meta) ?></span>
 								<?php endif; ?>
 								<svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="10" height="16" fill="none">
 									<use href="#navigate-right" />
 								</svg>
 							</button>
 						</h3>
-						<div class="accordion-body" role="region" aria-labelledby="accordion-<?= $accordionId ?>-title" id="accordion-<?= $accordionId ?>-body" hidden>
+						<div class="accordion-body" role="region" aria-labelledby="accordion-<?php echo $accordionId ?>-title" id="accordion-<?php echo $accordionId ?>-body" hidden>
 							<?php the_excerpt() ?>
 							<div class="item-footer">
 								<div class="btn-row">
 									<a href="<?php the_permalink() ?>" class="btn">Learn More</a>
 									<?php if ($link = get_field('apply_link')) : ?>
-										<a href="<?= $link ?>" target="_blank" class="btn">Apply</a>
+										<a href="<?php echo $link ?>" target="_blank" class="btn">Apply</a>
 									<?php endif; ?>
 								</div>
 								<?php get_template_part('parts/element/sharing', 'professional') ?>
@@ -76,7 +76,7 @@
 			endif;
 			?>
 		<?php else : ?>
-			<?= $content ?>
+			<?php echo $content ?>
 		<?php endif; ?>
 	</div>
 </div>

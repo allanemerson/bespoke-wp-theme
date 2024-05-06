@@ -7,11 +7,11 @@ $mainImage = Bespoke\Template::get_attribute($attributes, 'main_image');
 $secondaryImage = Bespoke\Template::get_attribute($attributes, 'secondary_image');
 $atts = $mainImage['id'] ? ['class' => 'has-main-image'] : [];
 ?>
-<header <?= get_block_wrapper_attributes($atts) ?>>
+<header <?php echo get_block_wrapper_attributes($atts) ?>>
 	<div class="container-large">
 		<?php if ($mainImage['id']) : ?>
 			<picture class="main-img">
-				<source media="(min-width: 768px)" srcset="<?= wp_get_attachment_image_url($mainImage['id'], "hero") ?>">
+				<source media="(min-width: 768px)" srcset="<?php echo wp_get_attachment_image_url($mainImage['id'], "hero") ?>">
 				<?php echo wp_get_attachment_image($mainImage['id'], "square") ?>
 				<!-- <img src="/assets/images/placeholders/heros/hero-1-sm.jpg" alt="" class="img-fluid" width="1410" height="700" decoding="async" loading="lazy"> -->
 			</picture>
@@ -23,7 +23,7 @@ $atts = $mainImage['id'] ? ['class' => 'has-main-image'] : [];
 				</figure>
 			<?php endif; ?>
 			<div class="body">
-				<?= $content ?>
+				<?php echo $content ?>
 			</div>
 		</div>
 	</div>

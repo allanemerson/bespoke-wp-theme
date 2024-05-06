@@ -6,5 +6,5 @@
 		<?php the_title() ?>
 	</h3>
 	<?php the_excerpt() ?>
-	<?= get_the_date() ?>
+	<?php echo get_the_date() ?>
 </a>

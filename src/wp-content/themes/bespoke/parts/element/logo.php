@@ -6,4 +6,4 @@ if (is_front_page()) :
 	$after = '</div>';
 endif;
 ?>
-<?= $before ?><img src="/assets/images/branding/logo.svg" alt="<?= get_bloginfo('name') ?> logo" width="150" height="89"><?= $after ?>
+<?php echo $before ?><img src="/assets/images/branding/logo.svg" alt="<?php echo get_bloginfo('name') ?> logo" width="150" height="89"><?php echo $after ?>

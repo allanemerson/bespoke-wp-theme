@@ -1,3 +1,3 @@
 <div class="not-found">
-	<p><?= $args['text'] ?></p>
+	<p><?php echo $args['text'] ?></p>
 </div>
