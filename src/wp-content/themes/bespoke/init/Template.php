@@ -11,12 +11,8 @@ class Template
 	 * Get the primary term of a post, based on a provided taxonomy and post id,
 	 * or falling back to the existing post, and the standard Post category taxonomy
 	 */
-	static function get_primary_post_term($taxonomy = 'category', $post_id = false)
+	static function get_primary_post_term(string $taxonomy, int $post_id = null)
 	{
-
-		// Make sure a taxonomy has been provided
-		if (!$taxonomy) return false;
-
 		// If no post ID is provided, set it to the current
 		if (!$post_id) $post_id = get_the_ID();
 
@@ -49,7 +45,7 @@ class Template
 		return $terms[0];
 	}
 
-	static function get_image($attributes, $key, $size = 'full')
+	static function get_image(array $attributes, string $key, string $size = 'full'): string
 	{
 		if (!isset($attributes[$key])) {
 			return false;
@@ -65,7 +61,7 @@ class Template
 			'alt' => get_post_meta($attributes[$key]['id'], '_wp_attachment_image_alt', true)
 		];
 	}
-	static function get_attribute($attributes, $key)
+	static function get_attribute(array $attributes, string $key): string
 	{
 		if (!isset($attributes[$key])) {
 			return false;
@@ -73,7 +69,7 @@ class Template
 		return $attributes[$key];
 	}
 
-	static function get_block_atts($block)
+	static function get_block_atts($block): array
 	{
 		$atts = ['class' => []];
 		if (isset($block->parsed_block['attrs']['style']['background']['backgroundImage'])) {
@@ -95,7 +91,7 @@ class Template
 		return $atts;
 	}
 
-	static function has_block($blocks, $blockName)
+	static function has_block($blocks, $blockName): bool
 	{
 		foreach ($blocks as $block) {
 			if ($block['blockName'] == $blockName) {
@@ -113,7 +109,7 @@ class Template
 		return false;
 	}
 
-	static function has_heading_1()
+	static function has_heading_1(): bool
 	{
 		// H1 is built into these blocks
 		if (has_block('bespoke/resource-list')) return true;
@@ -123,7 +119,7 @@ class Template
 		return self::find_heading_1($blocks);
 	}
 
-	static function find_heading_1($blocks)
+	static function find_heading_1($blocks): bool
 	{
 		foreach ($blocks as $block) {
 			if ($block['blockName'] == 'core/heading') {
