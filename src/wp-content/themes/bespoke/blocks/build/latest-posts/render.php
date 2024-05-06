@@ -9,11 +9,11 @@ $posts = new WP_Query($args);
 if ($posts->have_posts()) :
 ?>
 	<section <?php echo get_block_wrapper_attributes(); ?>>
-		<div class="container-large">
+		<div class="container">
 			<div class="slider-articles">
 				<header class="block-header is-style-minimal">
 					<?php if ($t = Bespoke\Template::get_attribute($attributes, 'heading')) : ?>
-						<h2 class="is-style-accent"><?php echo $t ?></h2>
+						<h2><?php echo $t ?></h2>
 					<?php endif; ?>
 					<div class="slider-controls">
 						<a href="<?php echo get_post_type_archive_link('post') ?>" class="block-header-link">
