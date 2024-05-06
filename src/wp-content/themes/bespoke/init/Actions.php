@@ -2,8 +2,6 @@
 
 namespace Bespoke;
 
-use Error;
-
 class Actions
 {
 
