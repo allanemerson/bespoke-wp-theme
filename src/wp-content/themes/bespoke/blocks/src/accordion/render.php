@@ -6,15 +6,16 @@
 ?>
 <div <?php echo get_block_wrapper_attributes(Bespoke\Template::get_block_atts($block)) ?>>
 	<div class="container-large">
-		<?php if ($attributes['contentType'] != 'custom') :
-			$t = Bespoke\Template::get_attribute($attributes, 'category');
+		<?php
+		if ($attributes['contentType'] != 'custom') :
+			$term = Bespoke\Template::get_attribute($attributes, 'category');
 			$heading = 'All Positions';
 			$args = [
 				'post_type' => $attributes['contentType'],
 				'post_status' => 'publish',
 				'posts_per_page' => -1
 			];
-			if ($t && $attributes['contentType'] == 'career') {
+			if ($term && $attributes['contentType'] == 'career') {
 				$args['tax_query'] = [
 					[
 						'taxonomy' => 'career-category',
@@ -22,25 +23,23 @@
 						'terms' => $t
 					]
 				];
-				$term = get_term($t, 'career-category');
+				$term = get_term($term, 'career-category');
 				$heading = $term->name;
 			}
 
 			$posts = new WP_Query($args);
-		?>
-			<?php
+
 			if ($posts->have_posts()) :
-			?>
-				<?php while ($posts->have_posts()) : $posts->the_post();
+				while ($posts->have_posts()) : $posts->the_post();
 					$accordionId = get_the_ID();
-					$shareUrl = urlencode(get_the_permalink());
+					$shareUrl = urlencode(esc_url(get_the_permalink()));
 					$meta = [];
 					if ($location = get_field('location')) $meta[] = $location;
 					if ($company = get_field('company')) {
 						$meta[] = $company['name'];
 					}
 					if ($closing = get_field('closing_date')) $meta[] = 'Closing ' . $closing;
-				?>
+		?>
 					<div class="wp-block-bespoke-accordion-item">
 						<h3 class="accordion-header">
 							<button id="accordion-<?php echo $accordionId ?>-title" type="button" class="accordion-toggle" aria-expanded="false" aria-controls="accordion-<?php echo $accordionId ?>-body">
@@ -59,24 +58,24 @@
 								<div class="btn-row">
 									<a href="<?php the_permalink() ?>" class="btn">Learn More</a>
 									<?php if ($link = get_field('apply_link')) : ?>
-										<a href="<?php echo $link ?>" target="_blank" class="btn">Apply</a>
+										<a href="<?php echo esc_url($link) ?>" target="_blank" class="btn">Apply</a>
 									<?php endif; ?>
 								</div>
 								<?php get_template_part('parts/element/sharing', 'professional') ?>
 							</div>
 						</div>
 					</div>
-				<?php endwhile;
-				wp_reset_postdata(); ?>
-			<?php
+				<?php
+				endwhile;
+				wp_reset_postdata();
 			else :
-			?>
+				?>
 				<div class="not-found">No openings are currently available.</div>
-			<?php
+		<?php
 			endif;
-			?>
-		<?php else : ?>
-			<?php echo $content ?>
-		<?php endif; ?>
+		else :
+			echo $content;
+		endif;
+		?>
 	</div>
 </div>
