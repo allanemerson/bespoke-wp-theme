@@ -16,7 +16,7 @@ class Actions
 		add_action('wp_head', [$this, 'ga'], 10);
 		add_action('wp_head', [$this, 'pingback'], 10);
 		add_action('wp_head', [$this, 'noconflict'], 99);
-		// add_action('wp_head', [$this, 'external_assets'], 7);
+		add_action('wp_head', [$this, 'external_assets'], 7);
 		add_action('wp_head', [$this, 'yoast'], ~PHP_INT_MAX);
 		add_action('wp_footer', [$this, 'footer_scripts'], 10);
 		add_action('after_body_start', [$this, 'gtm_body'], 1);
@@ -67,13 +67,6 @@ class Actions
 		wp_dequeue_style('wp-block-library');
 		wp_dequeue_style('wp-block-library-theme');
 		wp_dequeue_style('classic-theme-styles');
-	}
-
-	/**
-	 * Inserts script/link tags directly in the <head>
-	 */
-	function external_assets()
-	{
 	}
 
 	/**
@@ -138,6 +131,11 @@ class Actions
 	/**
 	 * The next several methods insert various static parts into the theme
 	 */
+	function extern_assets()
+	{
+		get_template_part('parts/hooked/external-assets');
+	}
+
 	function noconflict()
 	{
 		get_template_part('parts/hooked/noconflict');
