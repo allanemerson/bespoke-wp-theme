@@ -17,5 +17,12 @@ bower_components
 bower_components/*
 
 ##### Ignore everything except for our theme #####
-src
-!src/wp-content/themes/bespoke
+src/wp-admin
+src/wp-includes
+src/wp-*.php
+src/wp-content/index.php
+src/wp-content/plugins
+src/wp-content/uploads
+src/wp-content/themes/index.php
+src/index.php
+src/xmlrpc.php
