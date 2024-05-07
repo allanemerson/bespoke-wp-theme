@@ -28,7 +28,7 @@ class Blocks
 	}
 
 	/**
-	 * Registers blocks by finding the block.json files in our build directory
+	 * Creates allow-list of blocks for authors
 	 * @return array 
 	 */
 	function allowed_block_types($allowed_block_types, $block_editor_context)
