@@ -131,7 +131,7 @@ class Actions
 	/**
 	 * The next several methods insert various static parts into the theme
 	 */
-	function extern_assets()
+	function external_assets()
 	{
 		get_template_part('parts/hooked/external-assets');
 	}
