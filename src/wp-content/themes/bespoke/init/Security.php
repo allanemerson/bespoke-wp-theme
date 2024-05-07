@@ -19,7 +19,7 @@ class Security
 	}
 
 	/**
-	 * Disable WP REST API user enumeration
+	 * Disables WP REST API user enumeration
 	 */
 	function disable_rest_api_users($endpoints)
 	{

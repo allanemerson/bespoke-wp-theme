@@ -16,7 +16,6 @@ class Search
 		add_filter('posts_join', [$this, 'posts_join']);
 		add_filter('posts_where', [$this, 'posts_where']);
 		add_filter('posts_distinct', [$this, 'posts_distinct']);
-		// add_action('get_header', [$this, 'get_header']);
 	}
 
 	/**
@@ -55,16 +54,5 @@ class Search
 			return "DISTINCT";
 		}
 		return $where;
-	}
-
-	/**
-	 * Return a HTTP 404 for empty search results
-	 */
-	function get_header()
-	{
-		if (is_search() && !have_posts()) {
-			$this->query->set_404();
-			status_header(404);
-		}
 	}
 }

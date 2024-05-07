@@ -4,7 +4,7 @@ $perPage = get_query_var('posts_per_page');
 $total = $wp_query->found_posts;
 $max = $perPage * $currentPage < $total ? $perPage * $currentPage : $total;
 $min = $max - $perPage + 1 > 0 ? $max - $perPage + 1 : 1; // check for negative number to handle per-page settings greater than found posts
-$perPageSetting = get_option('posts_per_page');
+$perPageSetting = intval(get_option('posts_per_page'));
 $perPageOptions = [$perPageSetting, $perPageSetting * 1.5, $perPageSetting * 2];
 ?>
 <div class="paging">

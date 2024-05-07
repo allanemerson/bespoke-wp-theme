@@ -13,6 +13,10 @@ class Blocks
 		$this->custom_blocks = [];
 	}
 
+	/**
+	 * Registers blocks by finding the block.json files in our build directory
+	 * @return void
+	 */
 	function blocks_init()
 	{
 		$block_directories = glob(get_theme_file_path('/blocks/build/*'), GLOB_ONLYDIR);
@@ -23,6 +27,10 @@ class Blocks
 		endforeach;
 	}
 
+	/**
+	 * Registers blocks by finding the block.json files in our build directory
+	 * @return array 
+	 */
 	function allowed_block_types($allowed_block_types, $block_editor_context)
 	{
 		$allowedBlocks = [

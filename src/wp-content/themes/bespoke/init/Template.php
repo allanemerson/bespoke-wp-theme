@@ -6,12 +6,9 @@ class Template
 {
 
 	/**
-	 * Get Primary Post Term
-	 * ---------------------
-	 * Get the primary term of a post, based on a provided taxonomy and post id,
-	 * or falling back to the existing post, and the standard Post category taxonomy
+	 * Gets primary post term set by Yoast (most likely) or falls back to first non-uncategorized term
 	 */
-	static function get_primary_post_term(string $taxonomy, int $post_id = null)
+	static function get_primary_post_term(string $taxonomy, int $post_id = null): object|bool
 	{
 		// If no post ID is provided, set it to the current
 		if (!$post_id) $post_id = get_the_ID();
@@ -45,31 +42,42 @@ class Template
 		return $terms[0];
 	}
 
-	static function get_image(array $attributes, string $key, string $size = 'full'): string
+	/**
+	 * Checks for existance of image ID within block attributes before output
+	 */
+	static function get_image(array $attributes, string $key, string $size = 'full'): array
 	{
 		if (!isset($attributes[$key])) {
-			return false;
+			return [];
 		}
 		if (!$attributes[$key]['id']) {
-			return false;
+			return [];
 		}
 		$img = wp_get_attachment_image_src($attributes[$key]['id'], $size);
 		return [
+			'id' => $attributes[$key]['id'],
 			'width' => $img[1],
 			'height' => $img[2],
 			'url' => $img[0],
 			'alt' => get_post_meta($attributes[$key]['id'], '_wp_attachment_image_alt', true)
 		];
 	}
+
+	/**
+	 * Checks for existance of key in block attributes before output
+	 */
 	static function get_attribute(array $attributes, string $key): string
 	{
 		if (!isset($attributes[$key])) {
 			return false;
 		}
-		return $attributes[$key];
+		return esc_html($attributes[$key]);
 	}
 
-	static function get_block_atts($block): array
+	/**
+	 * Sets up addtional classes for get_block_wrapper_attributes
+	 */
+	static function get_block_atts(\WP_Block $block): array
 	{
 		$atts = ['class' => []];
 		if (isset($block->parsed_block['attrs']['style']['background']['backgroundImage'])) {
@@ -91,7 +99,10 @@ class Template
 		return $atts;
 	}
 
-	static function has_block($blocks, $blockName): bool
+	/**
+	 * Checks if child block exists within tree
+	 */
+	static function has_block(iterable $blocks, string $blockName): bool
 	{
 		foreach ($blocks as $block) {
 			if ($block['blockName'] == $blockName) {
@@ -109,17 +120,22 @@ class Template
 		return false;
 	}
 
+	/**
+	 * Checks for h1 tag anywhere in the post/page content
+	 */
 	static function has_heading_1(): bool
 	{
-		// H1 is built into these blocks
-		if (has_block('bespoke/resource-list')) return true;
+		// Bypass the below check if we know some blocks hard code in the h1
+		if (has_block('bespoke/hero')) return true;
 
-		// check to see an H1 was added anywhere else in the page
 		$blocks = parse_blocks(get_the_content());
 		return self::find_heading_1($blocks);
 	}
 
-	static function find_heading_1($blocks): bool
+	/**
+	 * Checks for h1 tag anywhere in the post/page content
+	 */
+	static function find_heading_1(iterable $blocks): bool
 	{
 		foreach ($blocks as $block) {
 			if ($block['blockName'] == 'core/heading') {

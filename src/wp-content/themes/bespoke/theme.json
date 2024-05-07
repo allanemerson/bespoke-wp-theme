@@ -20,16 +20,6 @@
 					"name": "Blue"
 				},
 				{
-					"slug": "blue-2",
-					"color": "#427ab1",
-					"name": "Blue 2"
-				},
-				{
-					"slug": "blue-5",
-					"color": "#ecf2f8",
-					"name": "Blue 5"
-				},
-				{
 					"slug": "red",
 					"color": "#A30B35",
 					"name": "Red"
@@ -64,7 +54,7 @@
 					"slug": "20"
 				},
 				{
-					"name": "Column Gap",
+					"name": "3",
 					"size": "var(--spacing-3)",
 					"slug": "30"
 				},

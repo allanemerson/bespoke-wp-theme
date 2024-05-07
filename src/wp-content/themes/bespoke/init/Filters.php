@@ -14,25 +14,16 @@ class Filters
 		add_filter('robots_txt', [$this, 'robots_txt'], 0, 2);
 		add_filter('wpseo_title', [$this, 'wpseo_title'], 10);
 		add_filter('wpseo_metadesc', [$this, 'wpseo_metadesc'], 10);
-		add_filter('pre_wp_mail', [$this, 'pre_wp_mail'], 10, 2);
 		add_filter('excerpt_more', [$this, 'excerpt_more'], 10);
 		add_filter('excerpt_length', [$this, 'excerpt_length'], 10);
 		add_filter('get_the_archive_title', [$this, 'get_the_archive_title'], 10, 3);
-		// $this->deactivate_production_plugins();
+		$this->deactivate_production_plugins();
 	}
 
-
-	// disable wp_mail sends from local environments by returning non-null 
-	function pre_wp_mail($sent, $atts)
-	{
-		if (defined('WP_ENV')) {
-			if (WP_ENV === 'local') {
-				return true;
-			}
-		}
-		return $sent;
-	}
-
+	/**
+	 * Auto-disables plugins defined in wp-config 
+	 * @return void
+	 */
 	function deactivate_production_plugins()
 	{
 		if (defined('DISABLED_LOCAL_PLUGINS')) :
@@ -41,8 +32,9 @@ class Filters
 	}
 
 	/**
-	 * Image Type Support
+	 * Adds image type support
 	 * http://www.iana.org/assignments/media-types/media-types.xhtml
+	 * @return array
 	 */
 	function upload_mimes($mimes)
 	{
@@ -73,7 +65,8 @@ class Filters
 	}
 
 	/**
-	 * Custom theme doesn't need customizer features
+	 * Removes customizer features
+	 * @return array
 	 */
 	function map_meta_cap($caps = array(), $cap = '', $user_id = 0, $args = array())
 	{
@@ -83,6 +76,10 @@ class Filters
 		return $caps;
 	}
 
+	/**
+	 * Adds yoast sitemap link to robots.txt
+	 * @return string
+	 */
 	function robots_txt($output, $public)
 	{
 		$options = get_option('wpseo');
@@ -94,7 +91,8 @@ class Filters
 	}
 
 	/**
-	 * Make sure "Home" doesn't end up in the title
+	 * Removes default "Home" from front page title
+	 * @return string
 	 */
 	function wpseo_title($title)
 	{
@@ -102,6 +100,10 @@ class Filters
 		return $title;
 	}
 
+	/**
+	 * Enforces at least something for the meta description
+	 * @return string
+	 */
 	function wpseo_metadesc($description)
 	{
 		if (empty($description)) {
@@ -116,16 +118,28 @@ class Filters
 		return $description;
 	}
 
+	/**
+	 * Replaces the default "more"
+	 * @return string
+	 */
 	function excerpt_more($more)
 	{
 		return '<span class="more"> &hellip;</span>';
 	}
 
+	/**
+	 * Sets the excerpt length
+	 * @return int
+	 */
 	function excerpt_length($length)
 	{
 		return 20;
 	}
 
+	/**
+	 * Returns an archive title with out the automated prefix
+	 * @return string
+	 */
 	function get_the_archive_title($title, $original_title, $prefix)
 	{
 		return $original_title;

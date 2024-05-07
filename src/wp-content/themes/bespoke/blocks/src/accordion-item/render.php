@@ -3,10 +3,13 @@
 /**
  * @see https://github.com/WordPress/gutenberg/blob/trunk/docs/reference-guides/block-api/block-metadata.md#render
  */
+
+use Bespoke\Template;
+
 $accordion_id = wp_unique_id();
 ?>
 <div <?php echo get_block_wrapper_attributes() ?>>
-	<?php if ($t = Bespoke\Template::get_attribute($attributes, 'title')) : ?>
+	<?php if ($t = Template::get_attribute($attributes, 'title')) : ?>
 		<h3 class="accordion-header">
 			<button id="accordion-<?php echo $accordion_id ?>-title" type="button" class="accordion-toggle" aria-expanded="false" aria-controls="accordion-<?php echo $accordion_id ?>-body">
 				<?php echo $t ?>

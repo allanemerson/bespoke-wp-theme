@@ -4,7 +4,7 @@ get_header();
 <div class="container">
 	<header>
 		<h1>
-			Search results for &ldquo;<?php echo get_search_query() ?>&rdquo;
+			Search results for &ldquo;<?php echo esc_html(get_search_query()) ?>&rdquo;
 		</h1>
 	</header>
 	<?php

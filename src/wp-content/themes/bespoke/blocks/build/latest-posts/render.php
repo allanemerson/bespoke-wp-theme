@@ -1,8 +1,16 @@
 <?php
+
+/**
+ * @see https://github.com/WordPress/gutenberg/blob/trunk/docs/reference-guides/block-api/block-metadata.md#render
+ */
+
+use Bespoke\Template;
+
 $args = [
 	'post_type' => 'post',
 	'post_status' => 'publish',
 	'posts_per_page' => 9,
+	'no_found_rows' => true
 ];
 
 $posts = new WP_Query($args);
@@ -11,8 +19,8 @@ if ($posts->have_posts()) :
 	<section <?php echo get_block_wrapper_attributes(); ?>>
 		<div class="container">
 			<div class="slider-articles">
-				<header class="block-header is-style-minimal">
-					<?php if ($t = Bespoke\Template::get_attribute($attributes, 'heading')) : ?>
+				<header>
+					<?php if ($t = Template::get_attribute($attributes, 'heading')) : ?>
 						<h2><?php echo $t ?></h2>
 					<?php endif; ?>
 					<div class="slider-controls">

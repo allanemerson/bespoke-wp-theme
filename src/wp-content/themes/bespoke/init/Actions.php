@@ -24,12 +24,16 @@ class Actions
 		add_action('after_body_start', [$this, 'symbols'], 10);
 		add_action('wp_enqueue_scripts', [$this, 'assets'], 10);
 		add_action('after_setup_theme', [$this, 'menus'], 10);
-		add_action('after_setup_theme', [$this, 'setup'], 10);
+		add_action('after_setup_theme', [$this, 'theme_support'], 10);
 		// add_action('pre_get_posts', [$this, 'pre_get_posts'], 10);
 		$this->images();
 	}
 
-	function getAsset($filename)
+	/**
+	 * Attemps to load versioned asset in mix-manifest or falls back to enqueued path
+	 * @return string
+	 */
+	function getAsset(string $filename)
 	{
 		$assetsPath = get_stylesheet_directory() . '/assets/';
 		$filePath = $assetsPath . $filename;
@@ -39,6 +43,9 @@ class Actions
 		return get_stylesheet_directory_uri() . '/assets' . $asset; // $asset will already have a preceeding slash
 	}
 
+	/**
+	 * Registers/Unregistered theme assets
+	 */
 	function assets()
 	{
 		wp_register_style('theme-base', get_template_directory_uri() . '/style.css'); // no versioning because this doesn't change
@@ -62,14 +69,17 @@ class Actions
 		wp_dequeue_style('classic-theme-styles');
 	}
 
+	/**
+	 * Inserts script/link tags directly in the <head>
+	 */
 	function external_assets()
 	{
-?>
-		
-	<?php
 	}
 
-	function setup()
+	/**
+	 * Declares theme support
+	 */
+	function theme_support()
 	{
 		remove_theme_support('core-block-patterns');
 		add_theme_support('automatic-feed-links');
@@ -80,11 +90,17 @@ class Actions
 		add_theme_support('align-wide');
 	}
 
+	/**
+	 * Registers/Unregistered theme assets in the footer
+	 */
 	function footer_scripts()
 	{
 		wp_dequeue_style('core-block-supports');
 	}
 
+	/**
+	 * Registers menu locations
+	 */
 	function menus()
 	{
 		register_nav_menus([
@@ -98,13 +114,19 @@ class Actions
 		]);
 	}
 
+	/**
+	 * Registers image sizes
+	 * add_image_size('size', width, height, hard crop)
+	 */
 	function images()
 	{
-		// thumbnail slug, width, height, crop
 		add_image_size('hero', 1410, 700, true);
 		add_image_size('loop', 450, 330, true);
 	}
 
+	/**
+	 * Modifies the query before making db request
+	 */
 	function pre_get_posts($query)
 	{
 		if (!is_admin()) {
@@ -113,6 +135,9 @@ class Actions
 		}
 	}
 
+	/**
+	 * The next several methods insert various static parts into the theme
+	 */
 	function noconflict()
 	{
 		get_template_part('parts/hooked/noconflict');
@@ -152,6 +177,7 @@ class Actions
 	{
 		get_template_part('parts/hooked/pingback');
 	}
+
 	/**
 	 * Removes the comment that Yoast drops in at the end of the page
 	 */

@@ -1,5 +1,6 @@
 <?php
-
+/*
+ACF's custom post type/taxonomy manager is much nicer to use, but leaving this around for reference
 namespace Bespoke;
 
 class CustomPostTypes
@@ -94,3 +95,4 @@ class CustomPostTypes
 		);
 	}
 }
+*/

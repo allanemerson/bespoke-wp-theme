@@ -14,19 +14,28 @@ class Admin extends Actions
 		add_action('admin_menu', [$this, 'front_page_on_pages_menu']);
 	}
 
+	/**
+	 * Registers scripts for the admin
+	 */
 	function admin_enqueue_scripts($hook)
 	{
 		wp_enqueue_script('theme-editor', parent::getAsset('/js/editor.js'), ['wp-blocks', 'wp-edit-post']);
 	}
 
+	/**
+	 * Registers scripts for our blocks
+	 * Use is_admin() to isolate admin styles to the editor because these enqueue to the front too
+	 */
 	function enqueue_block_assets()
 	{
-		wp_enqueue_style('theme-editor', parent::getAsset('/css/editor.css'), []);
+		if (is_admin()) {
+			wp_enqueue_style('theme-editor', parent::getAsset('/css/editor.css'), []);
+		}
 	}
 
-	/*
-	Custom Logo
-	*/
+	/**
+	 * Replaces the Wordpress logo on the login screen
+	 */
 	function login_head()
 	{
 		echo '<style type="text/css">
@@ -39,18 +48,17 @@ class Admin extends Actions
 		</style>';
 	}
 
-	/*
-	Link to the site front instead of wordpress.org
-	*/
+	/**
+	 * Links the login logo to the front
+	 */
 	function login_headerurl()
 	{
-		return home_url();
+		return esc_url(home_url());
 	}
 
 	/*
-	* Add Front Page edit link to admin Pages menu
+	* Adds Front Page edit link to admin Pages menu
 	*/
-
 	function front_page_on_pages_menu()
 	{
 		global $submenu;
