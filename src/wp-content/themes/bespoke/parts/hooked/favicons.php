@@ -1,7 +1,3 @@
-<?php
-// 2022-02-28: Updated to match current output from https://www.favicon-generator.org/
-// upload files to root rather than directory so the wordpress admin sees the favicon too, and so other outputted files are in the correct location
-?>
 <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
 <link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
 <link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">

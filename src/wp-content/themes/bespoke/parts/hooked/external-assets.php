@@ -1,5 +1,4 @@
 <?php
-
 /**
- * 3rd party links/scripts tags (Google fonts, Typekit, etc)
+ * Location for 3rd party scripts and stylesheets
  */

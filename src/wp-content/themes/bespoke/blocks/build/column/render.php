@@ -6,6 +6,6 @@
 
 use Bespoke\Template;
 ?>
-<div <?php echo get_block_wrapper_attributes(Template::get_block_atts($block)) ?>>
-	<div class="body"><?php echo $content ?></div>
+<div <?php echo get_block_wrapper_attributes(Template::getBlockAtts($block)) ?>>
+    <div class="body"><?php echo $content ?></div>
 </div>
