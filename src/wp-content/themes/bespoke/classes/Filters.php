@@ -4,7 +4,6 @@ namespace Bespoke;
 
 class Filters
 {
-
     public function __construct()
     {
         add_filter('wp_sitemaps_enabled', '__return_false');

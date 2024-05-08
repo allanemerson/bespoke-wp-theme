@@ -4,7 +4,6 @@ namespace Bespoke;
 
 class GravityForms
 {
-
     public function __construct()
     {
         add_filter('gform_confirmation_anchor', '__return_true');

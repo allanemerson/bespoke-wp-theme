@@ -4,7 +4,6 @@ namespace Bespoke;
 
 class Admin extends Actions
 {
-
     public function __construct()
     {
         add_action('login_head', array( $this, 'loginLogo' ));

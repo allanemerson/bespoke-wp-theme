@@ -4,7 +4,6 @@ namespace Bespoke;
 
 class PostTypes
 {
-
     public function __construct()
     {
         add_action('init', array( $this, 'examples' ));
@@ -13,7 +12,7 @@ class PostTypes
     /**
      * Generate labels
      */
-    private function labels(string $single, string $plural = null) : array
+    private function labels(string $single, string $plural = null): array
     {
         if (! $plural) {
             $plural = $single . 's';
@@ -38,7 +37,7 @@ class PostTypes
     /**
      * Generate taxonomy labels
      */
-    private function taxLabels(string $single, string $plural = null) : array
+    private function taxLabels(string $single, string $plural = null): array
     {
         if (! $plural) {
             $plural = $single . 's';

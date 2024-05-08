@@ -4,11 +4,10 @@ namespace Bespoke;
 
 class Template
 {
-
     /**
      * Get the primary term for the post, if it exists
      */
-    public static function getPrimaryPostTerm(string $taxonomy, int $post_id = null) : object|bool
+    public static function getPrimaryPostTerm(string $taxonomy, int $post_id = null): object|bool
     {
         // If no post ID is provided, set it to the current.
         if (! $post_id) {
@@ -53,7 +52,7 @@ class Template
     /**
      * Checks for existance of image ID within block attributes before output
      */
-    public static function getImage(array $attributes, string $key, string $size = 'full') : array
+    public static function getImage(array $attributes, string $key, string $size = 'full'): array
     {
         if (! isset($attributes[ $key ])) {
             return [];
@@ -75,7 +74,7 @@ class Template
     /**
      * Checks for existance of key in block attributes before output
      */
-    public static function getAttribute(array $attributes, string $key) : string|bool
+    public static function getAttribute(array $attributes, string $key): string|bool
     {
         if (! isset($attributes[ $key ])) {
             return false;
@@ -86,7 +85,7 @@ class Template
     /**
      * Sets up addtional classes for get_block_wrapper_attributes
      */
-    public static function getBlockAtts(\WP_Block $block) : array
+    public static function getBlockAtts(\WP_Block $block): array
     {
         $atts = array( 'class' => [] );
         if (isset($block->parsed_block['attrs']['style']['background']['backgroundImage'])) {
@@ -115,7 +114,7 @@ class Template
     /**
      *  Checks if child block exists within tree
      */
-    public static function hasBlock(iterable $blocks, string $block_name) : bool
+    public static function hasBlock(iterable $blocks, string $block_name): bool
     {
         foreach ($blocks as $block) {
             if ($block['blockName'] === $block_name) {
@@ -136,7 +135,7 @@ class Template
     /**
      * Checks for h1 tag anywhere in the post/page content
      */
-    public static function hasHeading1() : bool
+    public static function hasHeading1(): bool
     {
         // Bypass the below check if we know some blocks hard code in the h1.
         if (has_block('bespoke/hero')) {
@@ -150,7 +149,7 @@ class Template
     /**
      * Checks for h1 tag anywhere in the post/page content
      */
-    public static function findHeading1(iterable $blocks) : bool
+    public static function findHeading1(iterable $blocks): bool
     {
         foreach ($blocks as $block) {
             if ('core/heading' === $block['blockName']) {

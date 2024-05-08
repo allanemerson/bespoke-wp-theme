@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Functions
  *
@@ -19,11 +20,11 @@ spl_autoload_register(
 /*
 * Required
 */
-new Bespoke\Actions;
-new Bespoke\Admin;
-new Bespoke\Blocks;
-new Bespoke\Filters;
-new Bespoke\Security;
+new Bespoke\Actions();
+new Bespoke\Admin();
+new Bespoke\Blocks();
+new Bespoke\Filters();
+new Bespoke\Security();
 
 /*
 * Opt-in

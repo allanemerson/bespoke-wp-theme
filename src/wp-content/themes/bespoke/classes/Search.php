@@ -4,7 +4,6 @@ namespace Bespoke;
 
 class Search
 {
-
     protected $db;
     protected $query;
 
@@ -22,7 +21,7 @@ class Search
      * Join posts on postmeta
      * http://codex.wordpress.org/Plugin_API/Filter_Reference/posts_join
      */
-    public function postsJoin(string $join) : string
+    public function postsJoin(string $join): string
     {
         if (! empty($this->query->query_vars['s'])) {
             $join .= ' LEFT JOIN ' . $this->db->postmeta . ' ON ' . $this->db->posts . '.ID = ' . $this->db->postmeta . '.post_id ';
@@ -34,7 +33,7 @@ class Search
      * Modify where to include meta value
      * http://codex.wordpress.org/Plugin_API/Filter_Reference/posts_where
      */
-    public function postsWhere(string $where) : string
+    public function postsWhere(string $where): string
     {
         if (! empty($this->query->query_vars['s'])) {
             $where = preg_replace(
@@ -50,7 +49,7 @@ class Search
      * Prevent duplicates
      * http://codex.wordpress.org/Plugin_API/Filter_Reference/posts_distinct
      */
-    public function postsDistinct(string $distinct) : string
+    public function postsDistinct(string $distinct): string
     {
         if (! empty($this->query->query_vars['s'])) {
             return 'DISTINCT';

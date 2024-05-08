@@ -4,7 +4,6 @@ namespace Bespoke;
 
 class Actions
 {
-    
     public function __construct()
     {
         remove_action('wp_head', 'print_emoji_detection_script', 7);

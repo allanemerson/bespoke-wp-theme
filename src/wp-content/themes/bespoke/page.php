@@ -1,4 +1,5 @@
 <?php
+
 use Bespoke\Template;
 
 get_header();

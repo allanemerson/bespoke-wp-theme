@@ -4,7 +4,6 @@ namespace Bespoke;
 
 class Security
 {
-
     public function __construct()
     {
         add_filter('embed_oembed_discover', '__return_false');
@@ -24,7 +23,7 @@ class Security
      * @param array $endpoints REST endpoints.
      * @return array
      */
-    public function disableRestApiUsers(array $endpoints) : array
+    public function disableRestApiUsers(array $endpoints): array
     {
         // Prevents console error while editing posts.
         if (current_user_can('edit_posts')) {
