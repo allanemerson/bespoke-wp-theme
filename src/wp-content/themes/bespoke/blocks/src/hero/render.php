@@ -18,7 +18,7 @@ $atts = !empty($image) ? ['class' => 'has-image'] : [];
             </picture>
         <?php endif; ?>
         <div class="body">
-            <?php echo $content ?>
+            <?php echo wp_kses_post($content) ?>
         </div>
     </div>
 </header>

@@ -8,7 +8,7 @@
 <div <?php echo get_block_wrapper_attributes(['class' => 'is-style-global-bg']) ?>>
     <div class="container">
         <div class="body">
-            <?php echo $content ?>
+            <?php echo wp_kses_post($content) ?>
         </div>
     </div>
 </div>

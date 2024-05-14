@@ -21,10 +21,10 @@ if ($posts->have_posts()) :
             <div class="slider-articles">
                 <header>
                     <?php if ($t = Template::getAttribute($attributes, 'heading')) : ?>
-                        <h2><?php echo $t ?></h2>
+                        <h2><?php echo esc_html($t) ?></h2>
                     <?php endif; ?>
                     <div class="slider-controls">
-                        <a href="<?php echo get_post_type_archive_link('post') ?>" class="block-header-link">
+                        <a href="<?php echo esc_url(get_post_type_archive_link('post')) ?>" class="block-header-link">
                             More Like This
                         </a>
                         <?php if ($posts->found_posts > 3) : ?>
@@ -50,8 +50,10 @@ if ($posts->have_posts()) :
                         <div class="swiper-slide">
                             <?php get_template_part('parts/loop/post'); ?>
                         </div>
-                    <?php endwhile;
-                    wp_reset_postdata(); ?>
+                        <?php
+                    endwhile;
+                    wp_reset_postdata();
+                    ?>
                 </div>
             </div>
         </div>

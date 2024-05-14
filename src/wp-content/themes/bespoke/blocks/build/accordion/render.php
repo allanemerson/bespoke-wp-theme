@@ -40,7 +40,7 @@ use Bespoke\Template;
                 wp_reset_postdata();
             endif;
         else :
-            echo $content;
+            echo wp_kses_post($content);
         endif;
         ?>
     </div>
