@@ -98,7 +98,7 @@ class Template
         /*
         // if (!empty($block->parsed_block['innerBlocks'])) {
         //  $blocks = $block->parsed_block['innerBlocks'];
-        //  if (self::has_block($blocks, 'gravityforms/form')) {
+        //  if (self::hasBlock($blocks, 'gravityforms/form')) {
         //      $atts['class'][] = 'has-form';
         //  };
         // }
@@ -123,7 +123,7 @@ class Template
             if ($block['innerBlocks']) {
                 // Capture the result and only return if it's true.
                 // Otherwise we don't traverse other branches of the tree.
-                $result = self::has_block($block['innerBlocks'], $block_name);
+                $result = self::hasBlock($block['innerBlocks'], $block_name);
                 if (false !== $result) {
                     return true;
                 }
@@ -143,7 +143,7 @@ class Template
         }
 
         $blocks = parse_blocks(get_the_content());
-        return self::find_heading_1($blocks);
+        return self::findHeading1($blocks);
     }
 
     /**
@@ -159,7 +159,7 @@ class Template
             }
             if ($block['innerBlocks']) {
                 foreach ($block['innerBlocks'] as $blocks) {
-                    $result = self::find_heading_1($block['innerBlocks']);
+                    $result = self::findHeading1($block['innerBlocks']);
                     if (false !== $result) {
                         return true;
                     }

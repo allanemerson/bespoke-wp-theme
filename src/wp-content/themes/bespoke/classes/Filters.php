@@ -21,8 +21,6 @@ class Filters
 
     /**
      * Auto-disables plugins defined in wp-config
-     *
-     * @return void
      */
     public function deactivateProductionPlugins()
     {
